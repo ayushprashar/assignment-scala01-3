@@ -1,14 +1,10 @@
-def kth(domain: List[Int],index: Int): Unit = {
+def areaCalculator(typeOfShape: String,length: Int,breadth: Int,f:(String,Int,Int)=>Int) ={
+  f(typeOfShape,length,breadth)
+}
 
-  val temp =domain.zipWithIndex.map{
-    case (item,index2) if(index2 == index)=> print(item)
-    case _ =>
+def printArea(shape: String,len:Int,br:Int): Int ={
+  shape.toUpperCase match {
+    case "SQUARE" => areaCalculator("SQUARE",len,br,(s,a,b)=>(a*b))
   }
 }
-kth(List(1,2,3,4,5,6),4)
-
-def addToList(num: Int,Templist: List[Int]): List[Int] ={
-  num::Templist
-}
-var r = addToList(93,List(1,2,3,4,5,6))
-addToList(87,r)
+printArea("Square",10,10)
