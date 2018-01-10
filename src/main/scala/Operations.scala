@@ -19,41 +19,52 @@ class Operations {
   }
 
 
- def kth(domain: List[Int],index: Int): Unit = {
+ def kthElement(domain: List[Int],index: Int): Int = {
 
    val temp =domain.zipWithIndex.map{
-      case (item,index2) if(index2 == index)=> print(item)
-      case _ =>
+      case (item,index2) if index2 == index => item
+      case _ => -1
     }
   }
+
+
   def lengthOfList(domain: List[Int]): Int = {
-    domain.lastIndexOf(domain.last) + 1
+    def lengthCalculator(brokenList: List[Int], sequenceCounter:Int ): Int ={
+      brokenList match {
+        case head::tail => lengthCalculator(tail,sequenceCounter+1)
+        case heal::null => sequenceCounter+1
+
+      }
+
+    }
+    lengthCalculator(domain,0)
   }
+
 
   def areaCalculator(typeOfShape: String,length: Int,breadth: Int,f:(String,Int,Int)=>Int) ={
     f(typeOfShape,length,breadth)
   }
 
 
-  def printArea(shape: String,len:Int,br:Int): Int ={
+  def printArea(shape: String,dim1:Int,dim2:Int): Int ={
     shape.toUpperCase match {
-      case "SQUARE" => areaCalculator("SQUARE",len,br,(s,a,b)=>(a*b))
-      case "RHOMBUS" => areaCalculator("RHOMBUS")
+      case "RECTANGLE" => areaCalculator("RECTANGLE ",dim1,dim2,(s,a,b)=>(a*b))
+      case "RHOMBUS" => areaCalculator("RHOMBUS",dim1,dim2,(s,a,b)=>(a*b))
+      case "PARALLELOGRAM" => areaCalculator("PARALELLOGRAM",dim1,dim2,(s,a,b)=>(a*b))
+      case _ => -1
     }
+
   }
 
 
-
- /* def addToList(num: Int,Templist: List[Int]): List[Int] ={
-    num::Templist
-  }
 
   def reverseList(domain: List[Int]):List[Int]={
-    for(counter <- 0 to domain.length-1) yield
-  }*/
-  /*def addTwoLists(list1: List[Int],list2: List[Int]): List[Int] ={
-    if(list1.length == list2.length){
-      val a:List[Int] = list1.zip(list2)
+    def breakAndAdd(inputList: List[Int],resultantList: List[Int]):List[Int]={
+      inputList match {
+        case head::tail => breakAndAdd(tail,head::resultantList)
+        case head::null => head::resultantList
+      }
     }
-  }*/
+    breakAndAdd(domain,List())
+  }
 }

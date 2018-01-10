@@ -1,10 +1,12 @@
-def areaCalculator(typeOfShape: String,length: Int,breadth: Int,f:(String,Int,Int)=>Int) ={
-  f(typeOfShape,length,breadth)
-}
+def lengthOfList(domain: List[Int]): Int = {
+  def lengthCalculator(brokenList: List[Int], sequenceCounter:Int ): Int ={
+    brokenList match {
+      case head::tail => lengthCalculator(tail,sequenceCounter+1)
+      case heal::null => sequenceCounter+1
 
-def printArea(shape: String,len:Int,br:Int): Int ={
-  shape.toUpperCase match {
-    case "SQUARE" => areaCalculator("SQUARE",len,br,(s,a,b)=>(a*b))
+    }
+
   }
+  lengthCalculator(domain,0)
 }
-printArea("Square",10,10)
+lengthOfList(List(1,2,3,4))
